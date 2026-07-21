@@ -1,0 +1,9 @@
+**/node_modules
+**/target
+**/dist
+data
+docs
+.git
+*.md
+build-out/
+*.lpk

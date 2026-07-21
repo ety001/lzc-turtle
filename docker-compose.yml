@@ -1,0 +1,23 @@
+# 便捷启动（非必需，根 Dockerfile 单容器即可完整运行）
+services:
+  turtle:
+    build: .
+    image: lzc-turtle:latest
+    container_name: lzc-turtle
+    ports:
+      - "8080:8000"          # 宿主机端口:容器端口
+    volumes:
+      - ./config:/config     # 配置目录（turtle.db + 可选 config.toml）
+    environment:
+      AUTH_MODE: oidc
+      # ===== 必填：你的 OIDC 提供方配置 =====
+      OIDC_ISSUER: "https://your-idp.example.com"
+      OIDC_CLIENT_ID: "turtle"
+      OIDC_CLIENT_SECRET: "change-me"
+      OIDC_REDIRECT_URL: "http://localhost:8080/api/auth/callback"
+      # OIDC_SCOPES: "openid profile email"
+      # ===== 文件属主（避免挂载目录产生 root 属主文件）=====
+      PUID: "1000"
+      PGID: "1000"
+      # TZ: "Asia/Shanghai"
+    restart: unless-stopped

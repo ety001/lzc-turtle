@@ -1,0 +1,23 @@
+# 小海龟画图 — 懒猫微服运行结构
+# 鉴权：平台 lzc-ingress 已完成 SSO（OIDC），后端直接信任 X-HC-User-ID（方案A，见 docs/lzc-dev-skill/SKILL.md §5.1）
+application:
+  subdomain: turtle
+  routes:
+    # React 静态产物（contentdir 打包，运行时只读）
+    - /=file:///lzcapp/pkg/content/dist
+  upstreams:
+    # disable_trim_location 保留 /api 前缀，与独立 Docker 模式路径一致（需 lzcos v1.3.9+）
+    - location: /api
+      backend: http://127.0.0.1:8000/
+      backend_launch_command: /lzcapp/pkg/content/turtle-server
+      disable_trim_location: true
+  public_path:
+    - /api/health
+  health_check:
+    test_url: http://127.0.0.1:8000/api/health
+  environment:
+    - AUTH_MODE=header
+    - CONFIG_DIR=/lzcapp/var
+    - STATIC_DIR=/lzcapp/pkg/content/dist
+    - LISTEN_ADDR=127.0.0.1
+    - PORT=8000

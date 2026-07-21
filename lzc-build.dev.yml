@@ -1,0 +1,6 @@
+# 开发态差异配置：lzc-cli project deploy 默认读取本文件
+package_override:
+  package: cloud.lazycat.app.turtle.dev   # 独立 dev 包名，不覆盖正式安装
+contentdir:                                # 显式置空，避免误打包本地未构建产物
+envs:
+  - DEV_MODE=1

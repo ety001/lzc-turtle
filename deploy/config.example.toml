@@ -1,0 +1,19 @@
+# 小海龟画图 配置文件示例
+# 放置于配置目录（Docker 默认 /config/config.toml），环境变量优先级高于本文件
+# 所有键名与环境变量同名
+
+# 鉴权模式：oidc（独立部署默认）/ header（仅懒猫平台，严禁裸奔）/ dev（仅本地开发）
+# AUTH_MODE = "oidc"
+
+# ===== AUTH_MODE=oidc 必填 =====
+# OIDC_ISSUER = "https://your-idp.example.com"        # 会做 .well-known/openid-configuration discovery
+# OIDC_CLIENT_ID = "turtle"
+# OIDC_CLIENT_SECRET = "change-me"
+# OIDC_REDIRECT_URL = "http://localhost:8000/api/auth/callback"   # 需在 IdP 登记
+# OIDC_SCOPES = "openid profile email"
+
+# ===== 一般无需修改 =====
+# PORT = 8000
+# LISTEN_ADDR = "0.0.0.0"        # 监听地址；懒猫 manifest 注入 127.0.0.1（仅容器内可达）
+# COOKIE_SECURE = false          # true 时 OIDC 会话 cookie 带 Secure 属性（HTTPS 反代场景开启）
+# STATIC_DIR = "/app/dist"

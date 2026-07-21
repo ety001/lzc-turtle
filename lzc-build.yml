@@ -1,0 +1,5 @@
+# release 构建配置：lzc-cli project release -o turtle.lpk
+buildscript: ./deploy/build.sh
+contentdir: ./build-out
+pkgout: ./
+icon: ./deploy/icon.png

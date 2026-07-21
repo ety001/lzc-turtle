@@ -1,0 +1,15 @@
+package: cloud.lazycat.app.turtle
+version: 0.1.0
+min_os_version: "1.3.9"
+author: ety001
+homepage: https://github.com/ety001
+name: 小海龟画图
+description: 用 Logo 命令指挥小海龟绘图，保存并管理你的作品
+locales:
+  zh-CN:
+    name: 小海龟画图
+    description: 用 Logo 命令指挥小海龟绘图，保存并管理你的作品
+  en:
+    name: Turtle Drawing
+    description: Draw with turtle graphics commands; save and manage your artworks
+license: MIT
